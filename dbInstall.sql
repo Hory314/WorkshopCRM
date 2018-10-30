@@ -135,7 +135,7 @@ CREATE TABLE `car` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `brand` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `prod_year` year(4) DEFAULT NULL,
+  `prod_year` int(11) DEFAULT NULL,
   `plate_number` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `next_inspection` date DEFAULT NULL,
   `client_id` int(11) DEFAULT NULL,

@@ -2,47 +2,15 @@ package pl.coderslab.Entity;
 
 public enum Status
 {
-    ACCEPTED
-            {
-                public String getValue()
-                {
-                    return "accepted";
-                }
-            },
-    COST_APPROVED
-            {
-                public String getValue()
-                {
-                    return "cost_approved";
-                }
-            },
-    IN_REPAIR
-            {
-                public String getValue()
-                {
-                    return "in_repair";
-                }
-            },
-    READY
-            {
-                public String getValue()
-                {
-                    return "ready";
-                }
-            },
-    CANCELED
-            {
-                public String getValue()
-                {
-                    return "canceled";
-                }
-            };
-
-    public abstract String getValue();
+    ACCEPTED,
+    COST_APPROVED,
+    IN_REPAIR,
+    READY,
+    CANCELED;
 
     @Override
     public String toString()
     {
-        return super.toString();
+        return super.toString().toLowerCase(); // zwrac to samo co te napisy Enum. A do malej bo takie jest w bazie
     }
 }

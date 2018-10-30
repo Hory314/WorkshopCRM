@@ -57,4 +57,15 @@ public class Client
     {
         this.birthdate = birthdate;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Client{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", birthdate='" + birthdate + '\'' +
+                '}';
+    }
 }

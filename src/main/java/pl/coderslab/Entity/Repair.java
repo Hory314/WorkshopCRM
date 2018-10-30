@@ -165,4 +165,24 @@ public class Repair
     {
         this.car = car;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Repair{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", start='" + start + '\'' +
+                ", end='" + end + '\'' +
+                ", problemDesc='" + problemDesc + '\'' +
+                ", repairDesc='" + repairDesc + '\'' +
+                ", status=" + status +
+                ", clientCost=" + clientCost +
+                ", partsCost=" + partsCost +
+                ", pay=" + pay +
+                ", workHours=" + workHours +
+                ", employee=" + employee +
+                ", car=" + car +
+                '}';
+    }
 }

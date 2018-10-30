@@ -5,7 +5,7 @@ public class Car
     private Integer id;
     private String brand;
     private String model;
-    private Integer year;
+    private Integer prodYear;
     private String plateNumber;
     private String nextInspection;
     private Client client;
@@ -14,11 +14,11 @@ public class Car
     {
     }
 
-    public Car(String brand, String model, Integer year, String plateNumber, String nextInspection, Client client)
+    public Car(String brand, String model, Integer prodYear, String plateNumber, String nextInspection, Client client)
     {
         this.brand = brand;
         this.model = model;
-        this.year = year;
+        this.prodYear = prodYear;
         this.plateNumber = plateNumber;
         this.nextInspection = nextInspection;
         this.client = client;
@@ -54,14 +54,14 @@ public class Car
         this.model = model;
     }
 
-    public Integer getYear()
+    public Integer getProdYear()
     {
-        return year;
+        return prodYear;
     }
 
-    public void setYear(Integer year)
+    public void setProdYear(Integer prodYear)
     {
-        this.year = year;
+        this.prodYear = prodYear;
     }
 
     public String getPlateNumber()
@@ -92,5 +92,19 @@ public class Car
     public void setClient(Client client)
     {
         this.client = client;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Car{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", prodYear=" + prodYear +
+                ", plateNumber='" + plateNumber + '\'' +
+                ", nextInspection='" + nextInspection + '\'' +
+                ", client=" + client +
+                '}';
     }
 }

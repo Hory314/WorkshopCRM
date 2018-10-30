@@ -93,4 +93,18 @@ public class Employee
     {
         this.pay = pay;
     }
+
+    @Override
+    public String toString()
+    {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", note='" + note + '\'' +
+                ", pay=" + pay +
+                '}';
+    }
 }
