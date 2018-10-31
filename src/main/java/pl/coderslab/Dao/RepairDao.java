@@ -14,10 +14,13 @@ public class RepairDao
     private String dbName = "workshop_crm";
     private String tableName = "repair";
 
-    public List<Repair> findAll()
+    public List<Repair> findAll(String where)
     {
+        where = (where == null) ? "" : where;
 
-        String query = "Select * from " + tableName;
+        String query = "Select * from " + tableName + " " + where;
+        System.out.println(query);
+
         try
         {
             List<Map<String, String>> result = DBService.executeSelectQuery(dbName, query, null);
@@ -40,9 +43,15 @@ public class RepairDao
         return null;
     }
 
+    public List<Repair> findAll()
+    {
+        return findAll(null);
+    }
+
     public Repair getById(Integer id)
     {
         String query = "Select * from " + tableName + " where `id`=?";
+
         List<String> params = new ArrayList<>();
         params.add(id.toString());
 

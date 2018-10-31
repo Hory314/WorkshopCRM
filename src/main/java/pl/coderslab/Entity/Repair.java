@@ -8,7 +8,7 @@ public class Repair
     private String end;
     private String problemDesc;
     private String repairDesc;
-    private Status status; // test, jak nie ok, to zmienic na stringa i dodac odpowiednie finale static
+    private Status status;
     private Double clientCost;
     private Double partsCost;
     private Double pay;
@@ -94,6 +94,25 @@ public class Repair
     public void setRepairDesc(String repairDesc)
     {
         this.repairDesc = repairDesc;
+    }
+
+    public String getStringStatus()
+    {
+        switch (status)
+        {
+            case ACCEPTED:
+                return "Przyjęty";
+            case COST_APPROVED:
+                return "Zatwierdzone koszty naprawy";
+            case IN_REPAIR:
+                return "W naprawie";
+            case READY:
+                return "Gotowy do odbioru";
+            case CANCELED:
+                return "Rezygnacja";
+            default:
+                return null;
+        }
     }
 
     public Status getStatus()
