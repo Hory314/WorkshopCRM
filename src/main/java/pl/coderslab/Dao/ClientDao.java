@@ -17,7 +17,7 @@ public class ClientDao
     public List<Client> findAll()
     {
 
-        String query = "Select * from " + tableName;
+        String query = "Select * from " + tableName + " ORDER BY `surname` ASC";
         try
         {
             List<Map<String, String>> result = DBService.executeSelectQuery(dbName, query, null);

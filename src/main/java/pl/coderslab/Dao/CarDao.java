@@ -2,6 +2,7 @@ package pl.coderslab.Dao;
 
 import pl.coderslab.Entity.Car;
 import pl.coderslab.Entity.Client;
+import pl.coderslab.Entity.Repair;
 import pl.coderslab.Service.DBService;
 import pl.coderslab.Service.DaoService;
 
@@ -15,10 +16,13 @@ public class CarDao
     private String dbName = "workshop_crm";
     private String tableName = "car";
 
-    public List<Car> findAll()
+    public List<Car> findAll(String where)
     {
+        where = (where == null) ? "" : where;
 
-        String query = "Select * from " + tableName;
+        String query = "Select * from " + tableName + " " + where;
+        System.out.println(query);
+
         try
         {
             List<Map<String, String>> result = DBService.executeSelectQuery(dbName, query, null);
@@ -39,6 +43,11 @@ public class CarDao
             System.out.println(e);
         }
         return null;
+    }
+
+    public List<Car> findAll()
+    {
+        return findAll(null);
     }
 
     public Car getById(Integer id)
@@ -89,8 +98,7 @@ public class CarDao
         {
             //add new userGroup
             add(car);
-        }
-        else
+        } else
         {
             //update userGroup
             update(car);
@@ -130,8 +138,7 @@ public class CarDao
         try
         {
             DBService.executeQuery(dbName, query, params);
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             //should be logger - save info about error
             System.out.println(e);

@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<c:set var="page_title" value="Naprawy w toku" scope="request"/>
+<c:set var="page_title" value="Naprawy" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
 <table border="1">
     <tr>
@@ -20,7 +20,7 @@
     </tr>
     <c:forEach var="repair" items="${repairs}">
         <tr>
-            <td>${repair.id}</td>
+            <td><a href="<c:url value="/repair?id=${repair.id}"/>">${repair.id}</a></td>
             <td>${repair.date}</td>
             <td>${repair.start}</td>
             <td>${repair.end}</td>
@@ -31,8 +31,8 @@
             <td>${repair.partsCost}</td>
             <td>${repair.pay}</td>
             <td>${repair.workHours}</td>
-            <td>${repair.employee.firstName} ${repair.employee.surname}</td>
-            <td>${repair.car.brand} ${repair.car.model}<br>[${repair.car.plateNumber}]</td>
+            <td><a href="<c:url value="/employee?id=${repair.employee.id}"/>">${repair.employee.firstName} ${repair.employee.surname}</a></td>
+            <td>${repair.car.brand} ${repair.car.model}<br>[<a href="<c:url value="/car?id=${repair.car.id}"/>">${repair.car.plateNumber}</a>]</td>
         </tr>
     </c:forEach>
 </table>

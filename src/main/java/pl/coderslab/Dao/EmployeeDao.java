@@ -18,7 +18,7 @@ public class EmployeeDao
     public List<Employee> findAll()
     {
 
-        String query = "Select * from " + tableName;
+        String query = "Select * from " + tableName + " ORDER BY `surname` ASC";
         try
         {
             List<Map<String, String>> result = DBService.executeSelectQuery(dbName, query, null);
