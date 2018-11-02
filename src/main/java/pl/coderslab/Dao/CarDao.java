@@ -2,7 +2,6 @@ package pl.coderslab.Dao;
 
 import pl.coderslab.Entity.Car;
 import pl.coderslab.Entity.Client;
-import pl.coderslab.Entity.Repair;
 import pl.coderslab.Service.DBService;
 import pl.coderslab.Service.DaoService;
 
@@ -16,11 +15,17 @@ public class CarDao
     private String dbName = "workshop_crm";
     private String tableName = "car";
 
-    public List<Car> findAll(String where)
+    public List<Car> findAll(String condition)
     {
-        where = (where == null) ? "" : where;
+        condition = (condition == null) ? "" : condition;
 
-        String query = "Select * from " + tableName + " " + where;
+        String query = "Select * from " + tableName + " " + condition;
+
+        if(condition.toLowerCase().startsWith("select")) // jesli warunek zaczyna sie od SELECT to bedzie caly select a nie tylko warunek
+        {
+            query = condition;
+        }
+
         System.out.println(query);
 
         try

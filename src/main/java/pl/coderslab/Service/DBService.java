@@ -58,6 +58,7 @@ public class DBService
     // each selected row in a list as map
     public static List<Map<String, String>> executeSelectQuery(String database, String query, List<String> params) throws SQLException
     {
+        System.out.println(query);
         //Prepare variable for results
         List<Map<String, String>> dbResult = new ArrayList<>();
 

@@ -15,10 +15,18 @@ public class EmployeeDao
     private String dbName = "workshop_crm";
     private String tableName = "employee";
 
-    public List<Employee> findAll()
+    public List<Employee> findAll(String condition)
     {
+        condition = (condition == null) ? "" : condition;
 
         String query = "Select * from " + tableName + " ORDER BY `surname` ASC";
+
+        if(condition.toLowerCase().startsWith("select")) // jesli warunek zaczyna sie od SELECT to bedzie caly select a nie tylko warunek
+        {
+            query = condition;
+        }
+        System.out.println(query);
+
         try
         {
             List<Map<String, String>> result = DBService.executeSelectQuery(dbName, query, null);
@@ -34,11 +42,17 @@ public class EmployeeDao
                 }
                 return employees;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
         return null;
+    }
+
+    public List<Employee> findAll()
+    {
+        return findAll(null);
     }
 
     public Employee getById(Integer id)
@@ -58,7 +72,8 @@ public class EmployeeDao
 
                 return employee;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
@@ -86,7 +101,8 @@ public class EmployeeDao
         {
             //add new userGroup
             add(employee);
-        } else
+        }
+        else
         {
             //update userGroup
             update(employee);
@@ -127,7 +143,8 @@ public class EmployeeDao
         try
         {
             DBService.executeQuery(dbName, query, params);
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             //should be logger - save info about error
             System.out.println(e);

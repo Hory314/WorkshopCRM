@@ -18,7 +18,7 @@ public class RepairDao
     {
         where = (where == null) ? "" : where;
 
-        String query = "Select * from " + tableName + " " + where;
+        String query = "Select * from " + tableName + " " + where + " ORDER BY date DESC";
         System.out.println(query);
 
         try
@@ -36,7 +36,8 @@ public class RepairDao
                 }
                 return repairs;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
@@ -66,7 +67,8 @@ public class RepairDao
 
                 return repair;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
@@ -88,10 +90,10 @@ public class RepairDao
         repair.setProblemDesc(row.get("problem_desc"));
         repair.setRepairDesc(row.get("repair_desc"));
         repair.setStatus(Status.valueOf(row.get("status").toUpperCase()));
-        repair.setClientCost(Double.parseDouble(row.get("client_cost")));
-        repair.setPartsCost(Double.parseDouble(row.get("parts_cost")));
+        repair.setClientCost(row.get("client_cost") == null ? null : Double.parseDouble(row.get("client_cost"))); // jakby byl null w bazie
+        repair.setPartsCost(row.get("parts_cost") == null ? null : Double.parseDouble(row.get("parts_cost")));
         repair.setPay(employee);
-        repair.setWorkHours(Double.parseDouble(row.get("work_hours")));
+        repair.setWorkHours(row.get("work_hours") == null ? null : Double.parseDouble(row.get("work_hours")));
         repair.setEmployee(employee);
         repair.setCar(car);
 
@@ -104,7 +106,8 @@ public class RepairDao
         {
             //add new userGroup
             add(repair);
-        } else
+        }
+        else
         {
             //update userGroup
             update(repair);
@@ -123,10 +126,10 @@ public class RepairDao
         params.add(repair.getProblemDesc());
         params.add(repair.getRepairDesc());
         params.add(repair.getStatus().toString());
-        params.add(repair.getClientCost().toString());
-        params.add(repair.getPartsCost().toString());
-        params.add(repair.getPay().toString());
-        params.add(repair.getWorkHours().toString());
+        params.add(repair.getClientCost() == null ? null : repair.getClientCost().toString());
+        params.add(repair.getPartsCost() == null ? null : repair.getPartsCost().toString());
+        params.add(repair.getPay() == null ? null : repair.getPay().toString());
+        params.add(repair.getWorkHours() == null ? null : repair.getWorkHours().toString());
         params.add(repair.getEmployee().getId().toString());
         params.add(repair.getCar().getId().toString());
 
@@ -156,7 +159,8 @@ public class RepairDao
         try
         {
             DBService.executeQuery(dbName, query, params);
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             //should be logger - save info about error
             System.out.println(e);

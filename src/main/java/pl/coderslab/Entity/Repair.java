@@ -20,22 +20,6 @@ public class Repair
     {
     }
 
-    public Repair(String date, String start, String end, String problemDesc, String repairDesc, Status status, Double clientCost, Double partsCost, Double workHours, Employee employee, Car car)
-    {
-        this.date = date;
-        this.start = start;
-        this.end = end;
-        this.problemDesc = problemDesc;
-        this.repairDesc = repairDesc;
-        this.status = status;
-        this.clientCost = clientCost;
-        this.partsCost = partsCost;
-        this.pay = employee.getPay(); // myk
-        this.workHours = workHours;
-        this.employee = employee;
-        this.car = car;
-    }
-
     public Integer getId()
     {
         return id;
@@ -173,6 +157,7 @@ public class Repair
     public void setEmployee(Employee employee)
     {
         this.employee = employee;
+        this.pay = employee.getPay();
     }
 
     public Car getCar()

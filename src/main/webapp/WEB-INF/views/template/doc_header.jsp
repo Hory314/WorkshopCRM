@@ -9,7 +9,7 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="margin-top: 25px;">
 <div style="position: fixed;
     background-color: aliceblue;
     top: 0;

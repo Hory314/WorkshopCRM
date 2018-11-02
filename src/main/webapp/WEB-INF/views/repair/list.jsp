@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="page_title" value="Naprawy" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
+<p><a href="<c:url value="/repair/add"/>">Dodaj nową naprawę</a></p>
 <table border="1">
     <tr>
         <th>ID</th>
