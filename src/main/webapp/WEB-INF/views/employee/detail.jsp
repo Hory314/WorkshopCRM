@@ -2,7 +2,40 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="page_title" value="Naprawy" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
-<p><a href="<c:url value="/repair/add"/>">Dodaj nową naprawę</a></p>
+<table border="1">
+    <tr>
+        <td>ID</td>
+        <td>${employee.id}</td>
+    </tr>
+    <tr>
+        <td>Imię</td>
+        <td>${employee.firstName}</td>
+    </tr>
+    <tr>
+        <td>Nazwisko</td>
+        <td>${employee.surname}</td>
+    </tr>
+    <tr>
+        <td>Adres</td>
+        <td>${employee.address}</td>
+    </tr>
+    <tr>
+        <td>Telefon</td>
+        <td>${employee.phone}</td>
+    </tr>
+    <tr>
+        <td>Notatka</td>
+        <td>${employee.note}</td>
+    </tr>
+    <tr>
+        <td>Płaca na godzinę</td>
+        <td>${employee.pay}</td>
+    </tr>
+</table>
+<p><a href="<c:url value="/employee/edit?id=${employee.id}"/>">Edytuj</a></p>
+<p><a href="<c:url value="/employee/delete?id=${employee.id}"/>">Usuń</a></p>
+<hr>
+<p>Naprawy tego pracownika</p>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -36,8 +69,12 @@
             <td>${repair.partsCost}</td>
             <td>${repair.pay}</td>
             <td>${repair.workHours}</td>
-            <td><a href="<c:url value="/employee?id=${repair.employee.id}"/>">${repair.employee.firstName} ${repair.employee.surname}</a></td>
-            <td>${repair.car.brand} ${repair.car.model}<br>[<a href="<c:url value="/car?id=${repair.car.id}"/>">${repair.car.plateNumber}</a>]</td>
+            <td>
+                <a href="<c:url value="/employee?id=${repair.employee.id}"/>">${repair.employee.firstName} ${repair.employee.surname}</a>
+            </td>
+            <td>${repair.car.brand} ${repair.car.model}<br>[<a
+                    href="<c:url value="/car?id=${repair.car.id}"/>">${repair.car.plateNumber}</a>]
+            </td>
         </tr>
     </c:forEach>
 </table>

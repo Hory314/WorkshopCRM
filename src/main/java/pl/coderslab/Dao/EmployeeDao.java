@@ -21,7 +21,7 @@ public class EmployeeDao
 
         String query = "Select * from " + tableName + " ORDER BY `surname` ASC";
 
-        if(condition.toLowerCase().startsWith("select")) // jesli warunek zaczyna sie od SELECT to bedzie caly select a nie tylko warunek
+        if (condition.toLowerCase().startsWith("select")) // jesli warunek zaczyna sie od SELECT to bedzie caly select a nie tylko warunek
         {
             query = condition;
         }
@@ -57,6 +57,11 @@ public class EmployeeDao
 
     public Employee getById(Integer id)
     {
+        if (id == null)
+        {
+            return null;
+        }
+
         String query = "Select * from " + tableName + " where `id`=?";
         List<String> params = new ArrayList<>();
         params.add(id.toString());
@@ -90,7 +95,7 @@ public class EmployeeDao
         employee.setAddress(row.get("address"));
         employee.setPhone(row.get("phone"));
         employee.setNote(row.get("note"));
-        employee.setPay(Double.parseDouble(row.get("pay")));
+        employee.setPay(row.get("pay") == null ? null : Double.parseDouble(row.get("pay")));
 
         return employee;
     }
@@ -120,7 +125,7 @@ public class EmployeeDao
         params.add(employee.getAddress());
         params.add(employee.getPhone());
         params.add(employee.getNote());
-        params.add(employee.getPay().toString());
+        params.add(employee.getPay() == null ? null : employee.getPay().toString());
 
         DaoService.setNewId(employee, query, params, dbName); // zawiera insert do bazy
     }

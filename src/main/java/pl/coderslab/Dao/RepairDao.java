@@ -79,9 +79,9 @@ public class RepairDao
     {
         Repair repair = new Repair();
         EmployeeDao employeeDao = new EmployeeDao();
-        Employee employee = employeeDao.getById(Integer.parseInt(row.get("employee_id")));
+        Employee employee = employeeDao.getById(row.get("employee_id") == null ? null : Integer.parseInt(row.get("employee_id")));
         CarDao carDao = new CarDao();
-        Car car = carDao.getById(Integer.parseInt(row.get("car_id")));
+        Car car = carDao.getById(row.get("car_id") == null ? null : Integer.parseInt(row.get("car_id")));
 
         repair.setId(Integer.parseInt(row.get("id")));
         repair.setDate(row.get("date"));
@@ -92,7 +92,7 @@ public class RepairDao
         repair.setStatus(Status.valueOf(row.get("status").toUpperCase()));
         repair.setClientCost(row.get("client_cost") == null ? null : Double.parseDouble(row.get("client_cost"))); // jakby byl null w bazie
         repair.setPartsCost(row.get("parts_cost") == null ? null : Double.parseDouble(row.get("parts_cost")));
-        repair.setPay(employee);
+        repair.setPay(row.get("pay") == null ? null : Double.parseDouble(row.get("pay")));
         repair.setWorkHours(row.get("work_hours") == null ? null : Double.parseDouble(row.get("work_hours")));
         repair.setEmployee(employee);
         repair.setCar(car);
@@ -148,10 +148,10 @@ public class RepairDao
         params.add(repair.getProblemDesc());
         params.add(repair.getRepairDesc());
         params.add(repair.getStatus().toString());
-        params.add(repair.getClientCost().toString());
-        params.add(repair.getPartsCost().toString());
-        params.add(repair.getPay().toString());
-        params.add(repair.getWorkHours().toString());
+        params.add(repair.getClientCost() == null ? null : repair.getClientCost().toString());
+        params.add(repair.getPartsCost() == null ? null : repair.getPartsCost().toString());
+        params.add(repair.getPay() == null ? null : repair.getPay().toString());
+        params.add(repair.getWorkHours() == null ? null : repair.getWorkHours().toString());
         params.add(repair.getEmployee().getId().toString());
         params.add(repair.getCar().getId().toString());
         params.add(repair.getId().toString());

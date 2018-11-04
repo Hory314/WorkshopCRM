@@ -14,10 +14,14 @@ public class ClientDao
     private String dbName = "workshop_crm";
     private String tableName = "client";
 
-    public List<Client> findAll()
+    public List<Client> findAll(String where)
     {
+        where = (where == null) ? "" : where;
 
-        String query = "Select * from " + tableName + " ORDER BY `surname` ASC";
+        String query = "Select * from " + tableName + " " + where + " ORDER BY `surname` ASC";
+
+        System.out.println(query);
+
         try
         {
             List<Map<String, String>> result = DBService.executeSelectQuery(dbName, query, null);
@@ -33,15 +37,26 @@ public class ClientDao
                 }
                 return clients;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
         return null;
     }
 
+    public List<Client> findAll()
+    {
+        return findAll(null);
+    }
+
     public Client getById(Integer id)
     {
+        if (id == null)
+        {
+            return null;
+        }
+
         String query = "Select * from " + tableName + " where `id`=?";
         List<String> params = new ArrayList<>();
         params.add(id.toString());
@@ -57,7 +72,8 @@ public class ClientDao
 
                 return client;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }

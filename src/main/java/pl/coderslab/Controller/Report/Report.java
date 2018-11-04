@@ -28,7 +28,7 @@ public class Report extends HttpServlet
         EmployeeDao employeeDao = new EmployeeDao();
         try
         {
-            List<Map<String, String>> result;
+            List<Map<String, String>> result = null;
             if (type.equals("1"))
             {
                 result = DBService.executeSelectQuery("workshop_crm", "select employee.id, first_name, surname, date, SUM(work_hours) as sumh from employee\n" +
@@ -37,27 +37,20 @@ public class Report extends HttpServlet
                         "group by employee.id\n" +
                         "order by surname, first_name asc", null);
 
-
+                request.setAttribute("result", result);
+                getServletContext().getRequestDispatcher("/WEB-INF/views/report/report1.jsp").forward(request, response);
             }
             else if (type.equals("2"))
             {
-                result = null; // todo raport #2
+                result = DBService.executeSelectQuery("workshop_crm", "SELECT *, ROUND(COALESCE((client_cost - parts_cost - (work_hours*pay)),0),2) AS profit  FROM repair WHERE date BETWEEN '" + from + " 00:00:00' AND '" + to + " 00:00:00' ORDER BY date DESC", null);
+
+                request.setAttribute("result", result);
+                getServletContext().getRequestDispatcher("/WEB-INF/views/report/report2.jsp").forward(request, response);
             }
             else
             {
                 System.out.println("Nie ma takiego raportu");
-                return;
             }
-
-            if (result.size() > 0)
-            {
-                request.setAttribute("result", result);
-            }
-            else
-            {
-                System.out.println("Brak wyników");
-            }
-            getServletContext().getRequestDispatcher("/WEB-INF/views/report/report1.jsp").forward(request, response);
         }
         catch (SQLException e)
         {

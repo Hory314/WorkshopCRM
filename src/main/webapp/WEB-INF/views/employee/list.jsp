@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="page_title" value="Pracownicy" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
-
-
+<p><a href="<c:url value="/employee/add"/>">Dodaj nowego pracownika</a></p>
 <table border="1">
     <tr>
         <th>ID</th>

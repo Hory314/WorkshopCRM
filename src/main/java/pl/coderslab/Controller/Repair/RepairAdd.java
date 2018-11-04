@@ -48,7 +48,7 @@ public class RepairAdd extends HttpServlet
             repair.setStart(start);
             repair.setProblemDesc(problemDesc);
             repair.setStatus(Status.ACCEPTED);
-            repair.setPay(employee);
+            repair.setPay(employee.getPay());
             repair.setEmployee(employee);
             repair.setCar(car);
 

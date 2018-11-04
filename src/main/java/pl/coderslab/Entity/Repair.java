@@ -134,9 +134,9 @@ public class Repair
         return pay;
     }
 
-    public void setPay(Employee employee)
+    public void setPay(Double pay)
     {
-        this.pay = employee.getPay(); // myk
+        this.pay = pay; // myk
     }
 
     public Double getWorkHours()
@@ -156,8 +156,14 @@ public class Repair
 
     public void setEmployee(Employee employee)
     {
-        this.employee = employee;
-        this.pay = employee.getPay();
+        if (employee != null)
+        {
+            this.employee = employee;
+        }
+        else
+        {
+            this.employee = null;
+        }
     }
 
     public Car getCar()

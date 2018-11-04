@@ -141,7 +141,9 @@ CREATE TABLE `car` (
   `client_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `car_client_id_fk` (`client_id`),
-  CONSTRAINT `car_client_id_fk` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
+ CONSTRAINT `car_client_id_fk` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `car` (`id`, `brand`, `model`, `prod_year`, `plate_number`, `next_inspection`, `client_id`) VALUES (1, 'unde', 'error', '2001', 'fh 73373', '1972-05-08', 78);
@@ -277,8 +279,12 @@ CREATE TABLE `repair` (
   PRIMARY KEY (`id`),
   KEY `repair_employee_id_fk` (`employee_id`),
   KEY `repair_car_id_fk` (`car_id`),
-  CONSTRAINT `repair_car_id_fk` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`),
+   CONSTRAINT `repair_car_id_fk` FOREIGN KEY (`car_id`) REFERENCES `car` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL,
   CONSTRAINT `repair_employee_id_fk` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`)
+    ON DELETE SET NULL
+    ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `repair` (`id`, `date`, `start`, `end`, `problem_desc`, `repair_desc`, `status`, `client_cost`, `parts_cost`, `pay`, `work_hours`, `employee_id`, `car_id`) VALUES (1, '2013-11-15 13:57:24', '1994-07-07', '1983-08-15', 'Mock Turtle. \'No, no! The adventures first,\' said the Gryphon added \'Come, let\'s try the thing at all. However, \'jury-men\' would have called him Tortoise because he was obliged to say it any longer.', 'Caterpillar. \'Is that the poor child, \'for I never heard it before,\' said Alice,) and round the hall, but they were all shaped like ears and whiskers, how late it\'s getting!\' She was looking about.', 'canceled', '6737.57', '571.59', '31.80', '80.0000', 2, 38);

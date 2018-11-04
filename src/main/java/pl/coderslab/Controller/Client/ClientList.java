@@ -28,17 +28,45 @@ public class ClientList extends HttpServlet
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+
         ClientDao clientDao = new ClientDao();
-        List<Client> clients = clientDao.findAll();
+        List<Client> clients;
+
+        String searchedSurname = request.getParameter("search");
+
+        if (searchedSurname != null)
+        {
+            if (!searchedSurname.equals(""))
+            {
+                searchedSurname = searchedSurname.replaceAll("\\*", "%");
+                clients = clientDao.findAll("WHERE `surname` LIKE '" + searchedSurname + "'");
+            }
+            else
+            {
+                clients = clientDao.findAll();
+            }
+        }
+        else
+        {
+            clients = clientDao.findAll();
+        }
+
 
         Map<Client, List<Car>> clientsCarsMap = new LinkedHashMap<>(); // LinkedHashMap - to co hashmap ale zachowuje kolejnosc
 
         CarDao carDao = new CarDao();
         List<Car> cars;
-        for (Client client : clients)
+        if (clients != null)
         {
-            cars = carDao.findAll("WHERE `client_id` = " + client.getId());
-            clientsCarsMap.put(client, cars);
+            for (Client client : clients)
+            {
+                cars = carDao.findAll("WHERE `client_id` = " + client.getId());
+                clientsCarsMap.put(client, cars);
+            }
+        }
+        else
+        {
+            clientsCarsMap = null;
         }
 
         request.setAttribute("clientsCarsMap", clientsCarsMap);

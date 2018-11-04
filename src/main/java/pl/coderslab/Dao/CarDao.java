@@ -21,7 +21,7 @@ public class CarDao
 
         String query = "Select * from " + tableName + " " + condition;
 
-        if(condition.toLowerCase().startsWith("select")) // jesli warunek zaczyna sie od SELECT to bedzie caly select a nie tylko warunek
+        if (condition.toLowerCase().startsWith("select")) // jesli warunek zaczyna sie od SELECT to bedzie caly select a nie tylko warunek
         {
             query = condition;
         }
@@ -43,7 +43,8 @@ public class CarDao
                 }
                 return cars;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
@@ -57,6 +58,11 @@ public class CarDao
 
     public Car getById(Integer id)
     {
+        if (id == null)
+        {
+            return null;
+        }
+
         String query = "Select * from " + tableName + " where `id`=?";
         List<String> params = new ArrayList<>();
         params.add(id.toString());
@@ -72,7 +78,8 @@ public class CarDao
 
                 return car;
             }
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             System.out.println(e);
         }
@@ -91,7 +98,7 @@ public class CarDao
         car.setNextInspection(row.get("next_inspection"));
 
         ClientDao clientDao = new ClientDao();
-        Client client = clientDao.getById(Integer.parseInt(row.get("client_id")));
+        Client client = clientDao.getById(row.get("client_id") == null ? null : Integer.parseInt(row.get("client_id")));
         car.setClient(client);
 
         return car;
@@ -103,7 +110,8 @@ public class CarDao
         {
             //add new userGroup
             add(car);
-        } else
+        }
+        else
         {
             //update userGroup
             update(car);
@@ -143,7 +151,8 @@ public class CarDao
         try
         {
             DBService.executeQuery(dbName, query, params);
-        } catch (SQLException e)
+        }
+        catch (SQLException e)
         {
             //should be logger - save info about error
             System.out.println(e);

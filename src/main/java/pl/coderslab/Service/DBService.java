@@ -192,6 +192,7 @@ public class DBService
         }
         catch (SQLException e)
         {
+            e.printStackTrace();
             throw e;
         }
     }

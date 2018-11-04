@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(filterName = "SessionBypass", urlPatterns = {"/*"}) // delete `, urlPatterns = {"/*"}` after testing
+@WebFilter(filterName = "SessionBypass"/*, urlPatterns = {"/*"}*/) // delete `, urlPatterns = {"/*"}` after testing
 public class SessionBypass implements Filter
 {
     public void destroy()
