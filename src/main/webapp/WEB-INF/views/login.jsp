@@ -4,8 +4,8 @@
 <jsp:include page="template/doc_header.jsp"/>
 ${login_info}
 <form action="<c:url value="/login" />" method="post">
-    <p><input type="text" name="login" placeholder="Login" required></p>
-    <p><input type="password" name="password" placeholder="Hasło" required></p>
+    <p><input type="text" name="login" placeholder="Login" required> (admin)</p>
+    <p><input type="password" name="password" placeholder="Hasło" required> (coderslab)</p>
     <p><label><input type="checkbox" name="remember" checked> Zapamiętaj mnie</label></p>
     <p><input type="submit" value="Zaloguj"></p>
 </form>
