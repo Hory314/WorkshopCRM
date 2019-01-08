@@ -35,7 +35,7 @@ public class RepairDelete extends HttpServlet
             RepairDao repairDao = new RepairDao();
             repairDao.delete(intId);
 
-            response.sendRedirect(response.encodeRedirectURL("/repairs"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/repairs"));
         }
         catch (NumberFormatException e)
         {

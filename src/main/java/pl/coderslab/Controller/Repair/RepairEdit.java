@@ -78,7 +78,7 @@ public class RepairEdit extends HttpServlet
 
         RepairDao repairDao = new RepairDao();
         repairDao.save(repair);
-        response.sendRedirect(response.encodeRedirectURL("/repair?id=" + repair.getId()));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/repair?id=" + repair.getId()));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

@@ -30,7 +30,7 @@ public class CarDelete extends HttpServlet
             CarDao carDao = new CarDao();
             carDao.delete(intId);
 
-            response.sendRedirect(response.encodeRedirectURL("/customer?id=" + customerId));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/customer?id=" + customerId));
         }
         catch (NumberFormatException e)
         {

@@ -5,11 +5,10 @@
 <jsp:include page="../template/doc_header.jsp"/>
 <%
     LocalDate nextYear = LocalDate.now().plusYears(1);
-    System.out.println(nextYear);
 %>
 
 
-<form action="/car/add" method="post">
+<form action="<c:url value="/car/add"/>" method="post">
     <label>Marka: <input type="text" name="brand" required></label><br>
     <label>Model: <input type="text" name="model" required></label><br>
     <label>Rok produkcji: <input type="number" name="prod_year" required></label><br>

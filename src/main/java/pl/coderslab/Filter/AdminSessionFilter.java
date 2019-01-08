@@ -44,7 +44,7 @@ public class AdminSessionFilter implements Filter
         if (session == null) // pusta sesja
         {
             System.err.println("Pusta sesja - redirect do panelu logowania");
-            response.sendRedirect("/login"); // do logowania
+            response.sendRedirect(request.getContextPath()+"/login"); // do logowania
             return;
         } else
         {
@@ -62,7 +62,7 @@ public class AdminSessionFilter implements Filter
         }
         //chain.doFilter(req, resp);
         System.err.println("Nieustawione haslo/login w sesji");
-        response.sendRedirect("/login"); // do logowania
+        response.sendRedirect(request.getContextPath()+"/login"); // do logowania
         // dzieki returnom powyzsza linia nie wykona sie jesli dojdzie wczesniej do redirecta/doFiltera
     }
 

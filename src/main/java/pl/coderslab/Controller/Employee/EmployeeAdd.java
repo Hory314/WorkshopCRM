@@ -25,7 +25,7 @@ public class EmployeeAdd extends HttpServlet
 
         EmployeeDao employeeDao = new EmployeeDao();
         employeeDao.save(employee);
-        response.sendRedirect(response.encodeRedirectURL("/employees"));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/employees"));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

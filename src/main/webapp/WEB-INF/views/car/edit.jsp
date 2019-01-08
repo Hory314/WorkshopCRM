@@ -4,7 +4,7 @@
 <c:set var="page_title" value="Pracownicy" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
 
-<form action="/car/edit" method="post">
+<form action="<c:url value="/car/edit"/>" method="post">
     <label>Marka: <input type="text" name="brand" value="${car.brand}" required></label><br>
     <label>Model: <input type="text" name="model" value="${car.model}" required></label><br>
     <label>Rok produkcji: <input type="number" name="prod_year" value="${car.prodYear}" required></label><br>

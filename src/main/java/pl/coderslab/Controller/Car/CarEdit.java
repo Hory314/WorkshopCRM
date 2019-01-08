@@ -29,7 +29,7 @@ public class CarEdit extends HttpServlet
         CarDao carDao = new CarDao();
         carDao.save(car);
 
-        response.sendRedirect(response.encodeRedirectURL("/car?id=" + car.getId()));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/car?id=" + car.getId()));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

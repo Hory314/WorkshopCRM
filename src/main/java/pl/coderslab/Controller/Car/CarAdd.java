@@ -36,7 +36,7 @@ public class CarAdd extends HttpServlet
             CarDao carDao = new CarDao();
             carDao.save(car);
 
-            response.sendRedirect(response.encodeRedirectURL("/customer?id=" + intCid));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/customer?id=" + intCid));
         }
         catch (NumberFormatException e)
         {

@@ -5,7 +5,7 @@
 <c:set var="page_title" value="Nowa naprawa" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
 ${info}
-<form action="/repair/add" method="post">
+<form action="<c:url value="/repair/add"/>" method="post">
     <%
         LocalDate todayDate = LocalDateTime.now().toLocalDate();
     %>

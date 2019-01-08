@@ -60,7 +60,7 @@ public class Login extends HttpServlet
             }
 
             // response.sendRedirect("/adminpanel/manage/groups"); // logowanie ok, wiec przekierowujemy na cos
-            response.sendRedirect(response.encodeRedirectURL("/")); // logowanie ok, wiec przekierowujemy na cos
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/")); // logowanie ok, wiec przekierowujemy na cos
         } else
         {
             request.setAttribute("login_info", "<p style='color: red;'>Zły login/hasło.</p>"); // mozna potem zmienic na template
@@ -84,7 +84,7 @@ public class Login extends HttpServlet
                 if (sessionAdminName.equals(this.adminName) && sessionAdminPass.equals(this.adminPass)) // i sie zgadza...
                 { // jak hasla sa w sesji
                     System.err.println("OK zapraszamy");
-                    response.sendRedirect(response.encodeRedirectURL("/")); // to user zalogowany juz - przekieruj
+                    response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/")); // to user zalogowany juz - przekieruj
                     return; // return zeby sie forward() nie wykonal bo bedzie error
                 }
             }

@@ -29,7 +29,7 @@ public class ClientDelete extends HttpServlet
             ClientDao clientDao = new ClientDao();
             clientDao.delete(intId);
 
-            response.sendRedirect(response.encodeRedirectURL("/customers"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/customers"));
         }
         catch (NumberFormatException e)
         {

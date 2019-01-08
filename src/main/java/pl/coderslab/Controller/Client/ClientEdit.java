@@ -26,7 +26,7 @@ public class ClientEdit extends HttpServlet
         ClientDao clientDao = new ClientDao();
         clientDao.save(client);
 
-        response.sendRedirect(response.encodeRedirectURL("/customer?id=" + client.getId()));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/customer?id=" + client.getId()));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

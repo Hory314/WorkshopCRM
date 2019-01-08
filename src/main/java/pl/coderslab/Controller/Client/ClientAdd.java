@@ -26,7 +26,7 @@ public class ClientAdd extends HttpServlet
 
         int generatedId = client.getId();
 
-        response.sendRedirect(response.encodeRedirectURL("/customer?id=" + generatedId));
+        response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/customer?id=" + generatedId));
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

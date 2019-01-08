@@ -30,7 +30,7 @@ public class EmployeeDelete extends HttpServlet
             EmployeeDao employeeDao = new EmployeeDao();
             employeeDao.delete(intId);
 
-            response.sendRedirect(response.encodeRedirectURL("/employees"));
+            response.sendRedirect(response.encodeRedirectURL(request.getContextPath()+"/employees"));
         }
         catch (NumberFormatException e)
         {

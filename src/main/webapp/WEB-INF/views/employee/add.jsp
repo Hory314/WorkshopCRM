@@ -3,7 +3,7 @@
 <c:set var="page_title" value="Pracownicy" scope="request"/>
 <jsp:include page="../template/doc_header.jsp"/>
 
-<form action="/employee/add" method="post">
+<form action="<c:url value="/employee/add"/>" method="post">
     <label>ID: <input type="text" disabled></label><br>
     <label>Imię: <input type="text" name="first_name"></label><br>
     <label>Nazwisko: <input type="text" name="surname"></label><br>
